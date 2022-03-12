@@ -1,9 +1,13 @@
 import React from 'react'
+import CommunityBox from './CommunityBox'
+import Post from './Post'
+import './css/Feed.css'
 
 const Feed = () => {
     return (
-        <div>
-            <h1>Feed</h1>
+        <div className='comm__feed'>
+            <CommunityBox />
+            <Post />
         </div>
     )
 }
