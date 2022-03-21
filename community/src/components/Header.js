@@ -16,9 +16,9 @@ import { ExpandMore } from '@material-ui/icons';
 
 const Header = () => {
 
-  const[isModalOpen, setModalOpen] = useState(false)
+  const [isModalOpen, setModalOpen] = useState(false)
+  const [inputUrl, setInputUrl] = useState("")
   const Close = (<CloseIcon />)
-
 
   return (
     <div className="comm__header">
@@ -39,7 +39,6 @@ const Header = () => {
             </div>
             <div className="header__rem">
                 <Avatar />
-            </div>
             <Button onClick={() => setModalOpen(true)}>Add a Question</Button>
 
             <Modal
@@ -67,9 +66,29 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="modal__Field">
-                    <Input />
+                    <Input type='text' placeholder='Write your Question here' />
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}>
+                        <input type='text' value={inputUrl} onChange={(e) => setInputUrl(e.target.value)} placeholder='Optional: Paste your link here' 
+                        style={{
+                            margin: "5px 0px",
+                            border: "1px solid lightgray",
+                            padding: '10px',
+                            outline: '2px solid #000'
+                        }} />
+                        {
+                            inputUrl !== "" && <img style={{height: '40vh', objectFit: 'contain'}} src={inputUrl} alt={inputUrl} />
+                        }
+                    </div>
+                </div>
+                <div className='modal__buttons'>
+                    <button className='cancle' onClick={() => setModalOpen(false)}>Cancel</button>
+                    <button className='add' type='submit'>Add a Question</button>
                 </div>
             </Modal>
+            </div>
         </div>
     </div>
   )

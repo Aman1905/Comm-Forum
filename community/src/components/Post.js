@@ -1,9 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './css/Post.css'
 import {Avatar} from "@material-ui/core"
 import {ArrowUpwardOutlined, ArrowDownwardOutlined, RepeatOutlined, ChatBubbleOutlined,ShareOutlined, MoreHorizOutlined} from "@material-ui/icons"
+import CloseIcon from '@material-ui/icons/Close';
+import {Modal} from 'react-responsive-modal'
+import 'react-responsive-modal/styles.css'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'
 
 const Post = () => {
+
+  const [isModalOpen, setModalOpen] = useState(false)
+  const Close = (<CloseIcon />)
+
   return (
     <>
       <div className="post">
@@ -15,7 +24,30 @@ const Post = () => {
         <div className="post__body">
           <div className="post__question">
             <p>This is a Test Question</p>
-            <button className="post__btnAnswer">Answer</button>
+            <button className="post__btnAnswer" onClick={() => setModalOpen(true)}>Answer</button>
+            <Modal open={isModalOpen}
+             closeIcon={Close}
+             onClose={() => setModalOpen(false)}
+             closeOnEsc
+             center
+             closeOnOverlayClick={false}
+             styles ={{
+                 overlay: {
+                     height: "auto",
+                 }
+             }}>
+              <div className='modal__question'> 
+                <h1>This is Test Question</h1>
+                <p>asked by <span className='name'>UserName</span> on <span className='name'>Timestamp</span> </p>
+              </div>
+              <div className='modal__answer'>
+                <ReactQuill placeholder='Enter your answer' />
+              </div>
+              <div className='modal__button'>
+                <button className='cancle' onClick={() => setModalOpen(false)}>Cancel</button>
+                <button className='add' type='submit'>Add a Question</button>
+              </div>
+             </Modal>
           </div>
         </div>
         <div className="post__footer">
