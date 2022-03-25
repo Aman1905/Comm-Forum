@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 app.use('/api', router)
 
 app.use('/uploads', express.static(path.join(__dirname, "/../uploads")))
-app.use('/uploads', express.static(path.join(__dirname, "/../frontend/build")))
+app.use(express.static(path.join(__dirname, "/../frontend/build")))
 
 app.get("*", (req, res) => {
     try {

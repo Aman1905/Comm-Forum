@@ -29,4 +29,8 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.get('/', (req, res) => {
+    // using mongodb aggregation to join two tables
+})
+
 module.exports = router
