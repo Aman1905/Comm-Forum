@@ -1,9 +1,14 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
+const db = require('./db')
+const router = require('./routes')
 const cors = require('cors');
 const path = require('path');
 const PORT = 80
+
+// db connection
+db.connect();
 
 // Middleware
 app.use(bodyParser.json({limit: "50mb"}))
@@ -17,7 +22,7 @@ app.use((req, res, next) => {
 })
 
 // routes
-
+app.use('/api', router)
 
 app.use('/uploads', express.static(path.join(__dirname, "/../uploads")))
 app.use('/uploads', express.static(path.join(__dirname, "/../frontend/build")))
